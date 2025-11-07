@@ -23,7 +23,7 @@ def get_image_base64(path):
     with open(path, "rb") as img_file:
         return base64.b64encode(img_file.read()).decode()
 
-img_data = get_image_base64("D:/Streamlit/68184dfa4e4cb332c4a54662-removebg-preview.png")
+img_data = get_image_base64("images/68184dfa4e4cb332c4a54662-removebg-preview.png")
 st.set_page_config(
     page_title="Affordable AI",  # ✅ This changes the browser tab title
     page_icon=get_image_base64("images/68184dfa4e4cb332c4a54662-removebg-preview.png"),                             # Optional: Adds a favicon (emoji or path to image)
