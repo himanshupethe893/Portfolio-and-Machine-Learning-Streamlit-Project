@@ -1,13 +1,3 @@
+# Your new, temporary requirements.txt
 streamlit
 email-validator
-mysql-connector-python
-bcrypt
-audiorecorder
-pydub
-sounddevice
-scipy
-SpeechRecognition
-numpy
-pandas
-matplotlib
-scikit-learn
