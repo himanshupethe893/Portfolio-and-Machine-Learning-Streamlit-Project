@@ -26,7 +26,7 @@ def get_image_base64(path):
 img_data = get_image_base64("D:/Streamlit/68184dfa4e4cb332c4a54662-removebg-preview.png")
 st.set_page_config(
     page_title="Affordable AI",  # ✅ This changes the browser tab title
-    page_icon="D:/Streamlit/68184dfa4e4cb332c4a54662-removebg-preview.png",                             # Optional: Adds a favicon (emoji or path to image)
+    page_icon=get_image_base64("images/68184dfa4e4cb332c4a54662-removebg-preview.png"),                             # Optional: Adds a favicon (emoji or path to image)
     layout="wide",                              # Optional: wide or centered layout
     initial_sidebar_state="expanded"            # Optional: collapsed/expanded
 )
