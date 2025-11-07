@@ -1,0 +1,121 @@
+/* .st-emotion-cache-1o77jex{
+    background-color: #ff0000;
+    width: 100%;
+    color: aqua;
+    height: 100vh;
+    margin-left: 0px;
+    font-style: italic;
+}
+
+.st-emotion-cache-1w7qfeb h4{
+    padding: 0px;
+}
+
+.st-emotion-cache-1w7qfeb h1{
+    padding-top: 0px;
+}
+
+
+section[data-testid="stBaseButton-secondary"] button {
+    width: 100% !important;
+}
+
+.st-emotion-cache-umot6g button {
+    background-color: #7f00ff;
+    color: white;
+    border-radius: 8px;
+} */
+
+.animated-gradient-bar {
+    width: 100%;
+    height: 4px;
+    border-radius: 5px;
+    background: linear-gradient(270deg, #7f00ff, #007aff, #00ffaa, #27d6ea, #793c9f);
+    background-size: 1000% 1000%;
+    animation: gradientMove 8s ease infinite;
+    margin-bottom: 16px;
+}
+
+
+
+div[data-testid="stDecoration"] {
+    height: 4px;
+    background: linear-gradient(270deg, #7f00ff, #007aff, #00ffaa, #27d6ea, #793c9f);
+    border-radius: 4px;
+    background-size: 1000% 1000%;
+    animation: gradientMove 8s ease infinite;
+}
+/* Keyframes to animate the gradient */
+@keyframes gradientMove {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+/* ----------------- Sidebar Layout ------------------ */
+section[data-testid="stSidebar"] {
+    /* padding: 1rem; */
+    width: 289px !important;
+}
+
+/* ----------------- Sidebar Title ------------------ */
+.sidebar-title {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #7f00ff;
+}
+
+/* ----------------- Logo Styling ------------------ */
+.sidebar-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+    border-radius: 8px;
+}
+
+/* ----------------- Sidebar Buttons ------------------ */
+section[data-testid="stSidebar"] button {
+    width: 100% !important;
+    
+}
+
+section[data-testid="stSidebar"] button:hover {
+    background: linear-gradient(to right, #5e00cc, #0051cc);
+    transform: scale(1.03);
+    cursor: pointer;
+    color: gray;
+}
+/* ----------------- sidebar user name ------------------ */
+/* 🎯 Custom styling for sidebar user text */
+section[data-testid="stSidebar"] div[data-testid="stText"] {
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-align: center;
+    color: #ffffff;  /* Or #eaeaea for light gray */
+    margin-top: 10px;
+    font-family: "Segoe UI", sans-serif;
+    background: transparent !important;
+    border: none !important;
+    padding: 6px 0;
+    width: 100%;
+}
+
+
+
+/* ----------------- Welcome Message ------------------ */
+.st-emotion-cache-17z2rne {
+    background-color: #e8f0ff !important;
+    border-left: 6px solid #7f00ff;
+    color: #1e1e1e;
+}
+
+/* ----------------- Header Texts ------------------ */
+h1, h2, h3 {
+    color: #7f00ff;
+}
+
+
