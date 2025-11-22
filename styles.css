@@ -109,3 +109,15 @@ section[data-testid="stSidebar"] .stButton > button {
 h1, h2, h3 {
     color: #7f00ff !important;
 }
+
+/* --- Restoring the Sidebar Gradient Bar --- */
+.animated-gradient-bar {
+    width: 100%;
+    height: 4px;
+    border-radius: 5px;
+    background: linear-gradient(270deg, #7f00ff, #007aff, #00ffaa, #27d6ea, #793c9f);
+    background-size: 1000% 1000%;
+    animation: gradientMove 8s ease infinite;
+    margin-top: 10px;    /* Adds space between name and bar */
+    margin-bottom: 20px; /* Adds space between bar and buttons */
+}
