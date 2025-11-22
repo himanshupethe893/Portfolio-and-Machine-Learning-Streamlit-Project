@@ -2,8 +2,9 @@ streamlit
 email-validator
 mysql-connector-python
 bcrypt
-audiorecorder
+# audiorecorder
 # pydub
+portaudio19-dev
 sounddevice
 scipy
 SpeechRecognition
