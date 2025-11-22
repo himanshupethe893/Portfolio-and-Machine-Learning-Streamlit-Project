@@ -1,4 +1,44 @@
-/* --- Gradient Animation Bar --- */
+/* -------------------------------------------------------
+   1. ANIMATIONS & GLOBAL KEYFRAMES
+------------------------------------------------------- */
+@keyframes gradientMove {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* -------------------------------------------------------
+   2. TOP DECORATION BAR (CLOUD FIX)
+   We hide the default Streamlit bar and inject our own
+   pseudo-element to ensure it stays visible on Cloud.
+------------------------------------------------------- */
+
+/* Hide default decoration */
+div[data-testid="stDecoration"] {
+    visibility: hidden;
+    height: 0px;
+}
+
+/* Hide default header background so it doesn't block our bar */
+header[data-testid="stHeader"] {
+    background: transparent;
+}
+
+/* Inject Custom Top Gradient Bar */
+.stApp::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px; /* Thickness of the top bar */
+    background: linear-gradient(270deg, #7f00ff, #007aff, #00ffaa, #27d6ea, #793c9f);
+    background-size: 400% 400%;
+    animation: gradientMove 8s ease infinite;
+    z-index: 999999; /* Force it to sit on top of everything */
+}
+
+/* Optional: Utility class if you want to use this bar inside the page text */
 .animated-gradient-bar {
     width: 100%;
     height: 4px;
@@ -9,30 +49,16 @@
     margin-bottom: 16px;
 }
 
-/* --- Top Decoration Bar --- */
-div[data-testid="stDecoration"] {
-    height: 4px;
-    background: linear-gradient(270deg, #7f00ff, #007aff, #00ffaa, #27d6ea, #793c9f);
-    border-radius: 4px;
-    background-size: 1000% 1000%;
-    animation: gradientMove 8s ease infinite;
-}
+/* -------------------------------------------------------
+   3. SIDEBAR STYLING
+------------------------------------------------------- */
 
-@keyframes gradientMove {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* ----------------- Sidebar Styling ------------------ */
-
-/* Target the main sidebar container */
+/* Main Sidebar Container */
 section[data-testid="stSidebar"] {
-    /* Removed fixed width to prevent layout breaking on Cloud */
-    background-color: #f5f7fa; /* Optional: matches your secondary background */
+    background-color: #f5f7fa; 
 }
 
-/* Sidebar Title Styling */
+/* Sidebar Title */
 .sidebar-title {
     text-align: center;
     font-size: 1.5rem;
@@ -50,26 +76,12 @@ section[data-testid="stSidebar"] {
     border-radius: 8px;
 }
 
-/* Sidebar Buttons */
-section[data-testid="stSidebar"] button {
-    width: 100% !important;
-    border: 1px solid #7f00ff20;
-}
-
-section[data-testid="stSidebar"] button:hover {
-    background: linear-gradient(to right, #5e00cc, #0051cc);
-    color: white !important;
-    border: none;
-    transform: scale(1.02);
-    transition: all 0.3s ease;
-}
-
-/* 🎯 Custom styling for sidebar user text */
+/* Sidebar User Welcome Text */
 section[data-testid="stSidebar"] div[data-testid="stText"] {
     font-weight: 700;
     font-size: 1.05rem;
     text-align: center;
-    color: #1e1e1e !important; /* Changed to dark color because background is light */
+    color: #1e1e1e !important; 
     margin-top: 10px;
     font-family: "Segoe UI", sans-serif;
     background: transparent !important;
@@ -78,9 +90,34 @@ section[data-testid="stSidebar"] div[data-testid="stText"] {
     width: 100%;
 }
 
-/* ----------------- Main Page Elements ------------------ */
+/* -------------------------------------------------------
+   4. BUTTON STYLING (SIDEBAR & MAIN)
+------------------------------------------------------- */
 
-/* Headers */
+/* Force Sidebar Buttons to Full Width */
+section[data-testid="stSidebar"] button {
+    width: 100% !important;
+    border: 1px solid #7f00ff50 !important;
+    transition: all 0.3s ease;
+}
+
+/* Hover Effect for Sidebar Buttons */
+section[data-testid="stSidebar"] button:hover {
+    background: linear-gradient(to right, #5e00cc, #0051cc);
+    color: white !important;
+    border: 1px solid transparent !important;
+    transform: scale(1.02);
+}
+
+/* Force Main Page Buttons to Full Width (Optional) */
+.stButton > button {
+    width: 100% !important;
+    font-weight: 600 !important;
+}
+
+/* -------------------------------------------------------
+   5. GENERAL TYPOGRAPHY
+------------------------------------------------------- */
 h1, h2, h3 {
     color: #7f00ff !important;
 }
