@@ -542,11 +542,13 @@ if st.session_state.authenticated:
 
     st.sidebar.text(f"{st.session_state.user_name}")
 
-    if st.sidebar.button("🔓 Logout"):
+    if st.sidebar.button("Logout", use_container_width=True):
         st.session_state.authenticated = False
         st.session_state.user_name = ""
         st.session_state.page = "Login"
         st.rerun()
+
+    
 
     # Page Selection
     page_options = {
@@ -567,9 +569,9 @@ if st.session_state.authenticated:
 
 else:
     # Show login/register options
-    if st.sidebar.button("Login"):
+    if st.sidebar.button("Login", use_container_width=True):
         st.session_state.page = "Login"
-    if st.sidebar.button("Register"):
+    if st.sidebar.button("Register", use_container_width=True):
         st.session_state.page = "Register"
 
     # Show auth page based on state
