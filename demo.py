@@ -25,7 +25,7 @@ def get_image_base64(path):
 
 img_data = get_image_base64("images/68184dfa4e4cb332c4a54662-removebg-preview.png")
 st.set_page_config(
-    page_title="Affordable AI",  # ✅ This changes the browser tab title
+    page_title="Himanshu Pethe",  # ✅ This changes the browser tab title
     page_icon=get_image_base64("images/68184dfa4e4cb332c4a54662-removebg-preview.png"),                             # Optional: Adds a favicon (emoji or path to image)
     layout="wide",                              # Optional: wide or centered layout
     initial_sidebar_state="expanded"            # Optional: collapsed/expanded
@@ -216,7 +216,7 @@ def LTM():
 st.sidebar.markdown(f"""
     <div style='text-align: center;'>
         <img src="data:image/png;base64,{img_data}" width="100"/>
-        <h1>Affordable AI</h1>
+        <h1>Himanshu Pethe</h1>
     </div>
 """, unsafe_allow_html=True)
 
