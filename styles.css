@@ -9,17 +9,14 @@
 
 /* -------------------------------------------------------
    2. TOP DECORATION BAR (CLOUD FIX)
-   We hide the default Streamlit bar and inject our own
-   pseudo-element to ensure it stays visible on Cloud.
 ------------------------------------------------------- */
-
 /* Hide default decoration */
 div[data-testid="stDecoration"] {
     visibility: hidden;
     height: 0px;
 }
 
-/* Hide default header background so it doesn't block our bar */
+/* Hide default header background */
 header[data-testid="stHeader"] {
     background: transparent;
 }
@@ -31,34 +28,20 @@ header[data-testid="stHeader"] {
     top: 0;
     left: 0;
     right: 0;
-    height: 6px; /* Thickness of the top bar */
+    height: 6px; 
     background: linear-gradient(270deg, #7f00ff, #007aff, #00ffaa, #27d6ea, #793c9f);
     background-size: 400% 400%;
     animation: gradientMove 8s ease infinite;
-    z-index: 999999; /* Force it to sit on top of everything */
-}
-
-/* Optional: Utility class if you want to use this bar inside the page text */
-.animated-gradient-bar {
-    width: 100%;
-    height: 4px;
-    border-radius: 5px;
-    background: linear-gradient(270deg, #7f00ff, #007aff, #00ffaa, #27d6ea, #793c9f);
-    background-size: 1000% 1000%;
-    animation: gradientMove 8s ease infinite;
-    margin-bottom: 16px;
+    z-index: 999999; 
 }
 
 /* -------------------------------------------------------
    3. SIDEBAR STYLING
 ------------------------------------------------------- */
-
-/* Main Sidebar Container */
 section[data-testid="stSidebar"] {
     background-color: #f5f7fa; 
 }
 
-/* Sidebar Title */
 .sidebar-title {
     text-align: center;
     font-size: 1.5rem;
@@ -67,7 +50,6 @@ section[data-testid="stSidebar"] {
     color: #7f00ff !important;
 }
 
-/* Sidebar Logo */
 .sidebar-logo {
     display: block;
     margin-left: auto;
@@ -76,7 +58,6 @@ section[data-testid="stSidebar"] {
     border-radius: 8px;
 }
 
-/* Sidebar User Welcome Text */
 section[data-testid="stSidebar"] div[data-testid="stText"] {
     font-weight: 700;
     font-size: 1.05rem;
@@ -91,28 +72,35 @@ section[data-testid="stSidebar"] div[data-testid="stText"] {
 }
 
 /* -------------------------------------------------------
-   4. BUTTON STYLING (SIDEBAR & MAIN)
+   4. BUTTON STYLING (THE STRONGER FIX)
 ------------------------------------------------------- */
 
-/* Force Sidebar Buttons to Full Width */
-section[data-testid="stSidebar"] button {
+/* Target the DIV that wraps the button */
+.stButton {
     width: 100% !important;
-    border: 1px solid #7f00ff50 !important;
-    transition: all 0.3s ease;
 }
 
-/* Hover Effect for Sidebar Buttons */
-section[data-testid="stSidebar"] button:hover {
+/* Target the BUTTON itself */
+.stButton > button {
+    width: 100% !important;
+    display: block !important; /* Forces block layout */
+    border: 1px solid #7f00ff50 !important;
+    font-weight: 600 !important;
+}
+
+/* Specific Sidebar Button Override */
+section[data-testid="stSidebar"] .stButton,
+section[data-testid="stSidebar"] .stButton > button {
+    width: 100% !important;
+}
+
+/* Hover Effect */
+.stButton > button:hover {
     background: linear-gradient(to right, #5e00cc, #0051cc);
     color: white !important;
     border: 1px solid transparent !important;
     transform: scale(1.02);
-}
-
-/* Force Main Page Buttons to Full Width (Optional) */
-.stButton > button {
-    width: 100% !important;
-    font-weight: 600 !important;
+    transition: all 0.3s ease;
 }
 
 /* -------------------------------------------------------
