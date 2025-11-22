@@ -266,12 +266,20 @@ import pymongo # MongoDB Driver
 from dotenv import load_dotenv
 import bcrypt
 import base64
-from audiorecorder import audiorecorder
-from pydub import AudioSegment
+# from audiorecorder import audiorecorder
+# from pydub import AudioSegment
 import os
 import sounddevice as sd
 from scipy.io.wavfile import write
 import speech_recognition as sr
+
+# New way (Streamlit Secrets)
+# It automatically looks in secrets.toml (local) or Cloud Secrets (online)
+try:
+    mongo_uri = st.secrets["MONGO_URI"]
+except FileNotFoundError:
+    # Fallback for local .env usage if you prefer keeping that
+    mongo_uri = os.getenv("MONGO_URI")
 
 # --- Load Environment Variables ---
 load_dotenv()
