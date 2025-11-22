@@ -4,7 +4,7 @@ import mysql.connector
 from mysql.connector import Error
 import bcrypt
 import base64
-from audiorecorder import audiorecorder
+# from audiorecorder import audiorecorder
 # from pydub import AudioSegment
 import os
 import sounddevice as sd
