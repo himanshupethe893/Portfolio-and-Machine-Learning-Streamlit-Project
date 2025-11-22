@@ -38,9 +38,9 @@ header[data-testid="stHeader"] {
 /* -------------------------------------------------------
    3. SIDEBAR STYLING
 ------------------------------------------------------- */
-section[data-testid="stSidebar"] {
+/* section[data-testid="stSidebar"] {
     background-color: #f5f7fa; 
-}
+} */
 
 .sidebar-title {
     text-align: center;
