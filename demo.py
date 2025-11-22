@@ -266,6 +266,7 @@ import pymongo # MongoDB Driver
 from dotenv import load_dotenv
 import bcrypt
 import base64
+import certifi
 # from audiorecorder import audiorecorder
 # from pydub import AudioSegment
 import os
@@ -330,23 +331,35 @@ def check_password(password, hashed):
     return bcrypt.checkpw(password.encode(), hashed.encode())
 
 # --- MongoDB Connection ---
+# --- MongoDB Connection ---
 @st.cache_resource
 def init_connection():
     """
-    Initializes connection to MongoDB Atlas.
+    Initializes connection to MongoDB Atlas using Streamlit Secrets.
     """
-    mongo_uri = os.getenv("MONGO_URI")
-    if not mongo_uri:
-        st.error("❌ MONGO_URI not found in .env file.")
+    try:
+        # 1. Get the connection string from secrets.toml (Local) or Cloud Secrets
+        mongo_uri = st.secrets["MONGO_URI"]
+        
+        # 2. Connect to MongoDB
+        # tlsCAFile is sometimes needed on Streamlit Cloud to avoid SSL errors
+        import certifi
+        return pymongo.MongoClient(mongo_uri, tlsCAFile=certifi.where())
+        
+    except FileNotFoundError:
+        st.error("❌ 'secrets.toml' not found or MONGO_URI missing from Cloud Secrets.")
         st.stop()
-    return pymongo.MongoClient(mongo_uri)
+    except Exception as e:
+        st.error(f"❌ Connection Error: {e}")
+        st.stop()
 
 # Connect to Database
 client = init_connection()
 
-# --- UPDATED DATABASE & COLLECTION NAMES ---
-db = client.Portfolio_Database         # Database Name
-users_collection = db.login_details    # Collection (Table) Name
+# --- Database & Collection Names ---
+# Make sure these match your Atlas setup exactly
+db = client.Portfolio_Database        
+users_collection = db.login_details
 
 # --- Session Initialization ---
 if 'page' not in st.session_state:

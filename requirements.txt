@@ -3,8 +3,6 @@ pymongo
 python-dotenv
 bcrypt
 email-validator
-audiorecorder
-pydub
 scipy
 sounddevice
 SpeechRecognition
@@ -12,3 +10,4 @@ numpy
 pandas
 scikit-learn
 matplotlib
+certifi
