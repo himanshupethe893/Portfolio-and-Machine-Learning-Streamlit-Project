@@ -262,8 +262,8 @@
 
 import streamlit as st
 from email_validator import validate_email, EmailNotValidError
-import pymongo # Replaces mysql.connector
-from dotenv import load_dotenv # To load the .env file
+import pymongo # MongoDB Driver
+from dotenv import load_dotenv
 import bcrypt
 import base64
 from audiorecorder import audiorecorder
@@ -276,6 +276,19 @@ import speech_recognition as sr
 # --- Load Environment Variables ---
 load_dotenv()
 
+import streamlit as st
+import os
+
+def local_css(file_name):
+    if os.path.exists(file_name):
+        with open(file_name) as f:
+            st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+    else:
+        st.warning(f"Style file {file_name} not found")
+
+# Load the CSS
+local_css("styles.css")
+
 with open("styles.css") as f:
     try:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
@@ -286,7 +299,7 @@ def get_image_base64(path):
     with open(path, "rb") as img_file:
         return base64.b64encode(img_file.read()).decode()
 
-# Note: Ensure the image path exists, otherwise this might throw an error
+# Handle potential image loading errors
 try:
     img_data = get_image_base64("images/68184dfa4e4cb332c4a54662-removebg-preview.png")
     page_icon_img = img_data
@@ -313,7 +326,6 @@ def check_password(password, hashed):
 def init_connection():
     """
     Initializes connection to MongoDB Atlas.
-    Uses st.cache_resource to maintain the connection across reruns.
     """
     mongo_uri = os.getenv("MONGO_URI")
     if not mongo_uri:
@@ -323,8 +335,10 @@ def init_connection():
 
 # Connect to Database
 client = init_connection()
-db = client.User  # Database Name
-users_collection = db.userdata  # Collection Name
+
+# --- UPDATED DATABASE & COLLECTION NAMES ---
+db = client.Portfolio_Database         # Database Name
+users_collection = db.login_details    # Collection (Table) Name
 
 # --- Session Initialization ---
 if 'page' not in st.session_state:
@@ -336,9 +350,9 @@ if 'authenticated' not in st.session_state:
 if 'user_name' not in st.session_state:
     st.session_state.user_name = ""
 
-# --- Auth Logic (Updated for MongoDB) ---
+# --- Auth Logic (MongoDB) ---
 def register_user(name, email, password):
-    # Check if email already exists
+    # Check if email already exists in 'login_details'
     existing_user = users_collection.find_one({"email": email})
     
     if existing_user:
@@ -356,7 +370,7 @@ def register_user(name, email, password):
         st.rerun()
 
 def login_user(email, password):
-    # Find user by email
+    # Find user by email in 'login_details'
     user_data = users_collection.find_one({"email": email})
 
     if user_data:
