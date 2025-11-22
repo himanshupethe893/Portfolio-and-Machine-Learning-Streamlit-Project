@@ -1,14 +1,1 @@
-streamlit
-email-validator
-mysql-connector-python
-bcrypt
-# audiorecorder
-# pydub
 portaudio19-dev
-sounddevice
-scipy
-SpeechRecognition
-numpy
-pandas
-matplotlib
-scikit-learn
