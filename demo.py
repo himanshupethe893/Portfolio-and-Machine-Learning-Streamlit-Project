@@ -540,7 +540,7 @@ if st.session_state.authenticated:
         <div class="animated-gradient-bar"></div>
         """, unsafe_allow_html=True)
 
-    st.sidebar.text(f"{st.session_state.user_name}")
+    st.sidebar.text(f"Welcome, {st.session_state.user_name}")
 
     if st.sidebar.button("Logout", use_container_width=True):
         st.session_state.authenticated = False
