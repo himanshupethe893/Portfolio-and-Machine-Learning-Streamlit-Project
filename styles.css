@@ -107,9 +107,9 @@ section[data-testid="stSidebar"] .stButton > button {
 /* -------------------------------------------------------
    5. GENERAL TYPOGRAPHY
 ------------------------------------------------------- */
-h1, h2, h3 {
+/* h1, h2, h3 {
     color: #7f00ff !important;
-}
+} */
 
 /* --- Restoring the Sidebar Gradient Bar --- */
 .animated-gradient-bar {
