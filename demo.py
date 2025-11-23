@@ -525,6 +525,10 @@ def LTM():
             st.subheader("📝 Transcription:")
             st.write(result)
 
+def CNN():
+    st.title("Convolutional Neural Networks (CNN) Page")
+    st.write("This is a placeholder for the CNN page.")
+
 # --- Main App Routing ---
 
 st.sidebar.markdown(f"""
@@ -554,7 +558,8 @@ if st.session_state.authenticated:
     page_options = {
         "Intro": intro_page,
         "Linear Regression": Linear_Regression,
-        "Language Translation": LTM
+        "Language Translation": LTM,
+        "CNN": CNN
     }
     
     # Ensure current page is in options, else default to Intro
