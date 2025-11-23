@@ -528,6 +528,13 @@ def LTM():
 def CNN():
     st.title("Convolutional Neural Networks (CNN) Page")
     st.write("This is a placeholder for the CNN page.")
+    import numpy as np
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    import tensorflow as tf
+    from tensorflow.keras import layers, models
+
+    
 
 # --- Main App Routing ---
 
