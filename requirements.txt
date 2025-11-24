@@ -12,3 +12,6 @@ scikit-learn
 matplotlib
 certifi
 streamlit-autorefresh
+tensorflow-cpu
+opencv-python-headless
+Pillow
