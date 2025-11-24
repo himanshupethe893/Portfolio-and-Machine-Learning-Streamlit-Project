@@ -1,3 +1,5 @@
 ffmpeg
 libasound2-dev
 portaudio19-dev
+libgl1
+libglib2.0-0

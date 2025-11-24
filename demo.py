@@ -15,20 +15,29 @@ import speech_recognition as sr
 
 from streamlit_autorefresh import st_autorefresh
 
-def keep_session_alive(interval_minutes=5):
+from streamlit_autorefresh import st_autorefresh
+
+def keep_session_alive():
     """
-    Refreshes the script every X minutes to keep the session alive 
-    and prevent the "Are you still there?" timeout.
+    1. First run: Waits 10 minutes (safe 'warm up').
+    2. All subsequent runs: Waits 20 minutes.
     """
-    # Convert minutes to milliseconds
-    interval_ms = interval_minutes * 60 * 1000
-    
-    # This function creates a hidden counter that updates automatically
-    count = st_autorefresh(interval=interval_ms, key="keep_alive_counter")
-    
-    # Optional: Logic to prevent infinite resource usage (e.g., stop after 2 hours)
-    # but for pure keep-alive, the above line is sufficient.
+    # Check if we've already run the 'first ping'
+    if 'has_first_ping_occurred' not in st.session_state:
+        # First time: Set to 10 minutes (600,000 milliseconds)
+        interval = 10 * 60 * 1000
+        st.session_state.has_first_ping_occurred = True
+    else:
+        # Subsequent times: Set to 20 minutes (1,200,000 milliseconds)
+        interval = 20 * 60 * 1000
+
+    # Create the counter
+    count = st_autorefresh(interval=interval, key="keep_alive_counter")
     return count
+
+# --- Main Execution ---
+# Call this at the top of your app
+
 
 # New way (Streamlit Secrets)
 # It automatically looks in secrets.toml (local) or Cloud Secrets (online)
@@ -299,7 +308,7 @@ if 'page' not in st.session_state:
     st.session_state.page = 'Login'
 
 # CALL IT HERE: Ping the server every 5 minutes
-keep_session_alive(interval_minutes=5)
+keep_session_alive()
 
 st.sidebar.markdown(f"""
     <div style='text-align: center;'>
